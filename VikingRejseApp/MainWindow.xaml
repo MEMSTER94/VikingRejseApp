@@ -1,0 +1,170 @@
+﻿<Window x:Class="VikingRejseApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VikingRejseApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Kunder">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="47*"/>
+                        <ColumnDefinition Width="333*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Background="White" x:Name="navn" HorizontalAlignment="Left" Margin="84,73,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="72" Grid.ColumnSpan="5"/>
+                    <TextBox Background="White" x:Name="adresse" HorizontalAlignment="Left" Margin="84,109,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="72" Grid.ColumnSpan="5"/>
+                    <TextBox Background="White" x:Name="telefon" HorizontalAlignment="Left" Margin="84,143,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="72" Grid.ColumnSpan="5"/>
+                    <Label Content="Navn" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Adresse" HorizontalAlignment="Left" Margin="25,107,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Telefon" HorizontalAlignment="Left" Margin="25,138,0,0" VerticalAlignment="Top"/>
+                    <DataGrid Name="dg_kunder" Margin="206,10,10,237" ItemsSource="{Binding Kundeoversigt}" AutoGenerateColumns="False" Grid.Column="4">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                    Header="Navn"
+                    Binding="{Binding Navn}"/>
+                            <DataGridTextColumn
+                    Header="Adresse"
+                    Binding="{Binding Adresse}"/>
+                            <DataGridTextColumn
+                    Header="Telefon"
+                    Binding="{Binding Telefon}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="btnOpdat" Content="Opdater" HorizontalAlignment="Left" Margin="8,364,0,0" VerticalAlignment="Top" Width="49" Grid.Column="4"/>
+                    <Button Name="btnOpret" Content="Opret" HorizontalAlignment="Left" Margin="76,364,0,0" VerticalAlignment="Top" Width="50" Click="btnOpret_Click" Grid.Column="4"/>
+                    <DataGrid Name="dg_rejser" Margin="206,223,10,32" ItemsSource="{Binding Rejseoversigt}" Grid.Column="4"/>
+                    <Label Content="Rejser" HorizontalAlignment="Left" Margin="206,0,0,0" VerticalAlignment="Center" Width="102" Grid.Column="4"/>
+                    <Button x:Name="tilknyt" Content="Tilknyt" HorizontalAlignment="Left" Margin="148,364,0,0" VerticalAlignment="Top" Width="52" Click="tilknyt_Click" Grid.Column="4"/>
+                    <Button x:Name="sletKun" Content="Slet" Grid.Column="1" HorizontalAlignment="Left" Margin="151,339,0,0" VerticalAlignment="Top" Width="49" Click="sletKun_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Transportører">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox Background="White" x:Name="tNavn" HorizontalAlignment="Left" Margin="84,73,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="72" Grid.ColumnSpan="5"/>
+                    <TextBox Background="White" x:Name="tAdresse" HorizontalAlignment="Left" Margin="84,109,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="72" Grid.ColumnSpan="5"/>
+                    <TextBox Background="White" x:Name="tTelefon" HorizontalAlignment="Left" Margin="84,143,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="72" Grid.ColumnSpan="5"/>
+                    <TextBox x:Name="tBeskrivelseBox" HorizontalAlignment="Left" Margin="39,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" Height="85"/>
+                    <Label Content="Navn" HorizontalAlignment="Left" Margin="25,75,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Adresse" HorizontalAlignment="Left" Margin="25,107,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Telefon" HorizontalAlignment="Left" Margin="25,138,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="39,216,0,0" VerticalAlignment="Top"/>
+                    <DataGrid Name="dg_tRejser" Margin="326,223,10,32" ItemsSource="{Binding Rejseoversigt}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                    Header="Transportør"
+                    Binding="{Binding Transportør.Navn}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid Name="dg_transportører" Margin="326,10,10,237" ItemsSource="{Binding Transportørsoversigt}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                    Header="Navn"
+                    Binding="{Binding Navn}"/>
+                            <DataGridTextColumn
+                    Header="Adresse"
+                    Binding="{Binding Adresse}"/>
+                            <DataGridTextColumn
+                    Header="Telefon"
+                    Binding="{Binding Telefon}"/>
+                            <DataGridTextColumn
+                    Header="Beskrivelse"
+                    Binding="{Binding Bemærkninger}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Rejser" HorizontalAlignment="Left" Margin="326,192,0,0" VerticalAlignment="Top" Width="102"/>
+                    <Button x:Name="tTilbtn" Content="Tilknyt" HorizontalAlignment="Left" Margin="262,354,0,0" VerticalAlignment="Top" Width="59" Click="tTilbtn_Click"/>
+                    <Button x:Name="tOpretbtn" Content="Opret" HorizontalAlignment="Left" Margin="204,354,0,0" VerticalAlignment="Top" Width="53" Click="tOpretbtn_Click"/>
+                    <Button x:Name="tSletbtn" Content="Slet" HorizontalAlignment="Left" Margin="159,354,0,0" VerticalAlignment="Top" Width="40" Click="tSletbtn_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Rejsearrangement">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="rejser" Margin="349,10,10,238" ItemsSource="{Binding Rejseoversigt}"/>
+                    <TextBox x:Name="titelBox" HorizontalAlignment="Left" Margin="189,34,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="23"/>
+                    <TextBox x:Name="byBox" HorizontalAlignment="Left" Margin="189,62,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="25"/>
+                    <DatePicker x:Name="startBox" HorizontalAlignment="Left" Text="" Margin="189,94,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
+                    <DatePicker x:Name="slutBox" HorizontalAlignment="Left" Margin="189,127,0,0" Text="" VerticalAlignment="Top" Width="120" Height="24"/>
+                    <TextBox x:Name="prisBox" HorizontalAlignment="Left" Margin="189,156,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="24"/>
+                    <TextBox x:Name="antalBox" HorizontalAlignment="Left" Margin="189,185,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="23"/>
+                    <Label Content="Titel" HorizontalAlignment="Left" Margin="39,30,0,0" VerticalAlignment="Top"/>
+                    <Label Content="By" HorizontalAlignment="Left" Margin="39,61,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Startdato" HorizontalAlignment="Left" Margin="39,92,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Slutdato" HorizontalAlignment="Left" Margin="39,123,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Pris" HorizontalAlignment="Left" Margin="39,154,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Max antal" HorizontalAlignment="Left" Margin="39,185,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="beskrivelseBox" HorizontalAlignment="Left" Margin="39,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" Height="85"/>
+                    <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="39,216,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnOpretRej" Content="Opret Rejse" HorizontalAlignment="Left" Margin="263,350,0,0" VerticalAlignment="Top" Click="btnOpretRej_Click" Width="81"/>
+                    <Button x:Name="btnOpdatRej" Content="Opdater" HorizontalAlignment="Left" Margin="189,350,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="Tilmeldte" Margin="349,216,10,25" ItemsSource="{Binding Tilmeldingsoversigt}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                            Header="Kunde"
+                            Binding="{Binding Kunde.Navn}"/>
+                            <DataGridTextColumn
+                            Header="Rejse"
+                            Binding="{Binding Rejse.Titel}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Kunder som er tilknyttet en rejse" HorizontalAlignment="Left" Margin="349,184,0,0" VerticalAlignment="Top" Width="185"/>
+                    <Button x:Name="sletR" Content="slet rejse" Margin="104,350,628,36" Click="sletR_Click"/>
+                    <Button x:Name="sletTil" Content="Slet tilmeldt" HorizontalAlignment="Left" Margin="267,318,0,0" VerticalAlignment="Top" Width="77" Click="sletTil_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vejr">
+                <Grid>
+                        <TextBox x:Name="comboBy" HorizontalAlignment="Left" Margin="498,63,0,0" VerticalAlignment="Top" Width="197"/>
+                        <Label Content="By" HorizontalAlignment="Left" Margin="409,63,0,0" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="gnsntBox" HorizontalAlignment="Left" Margin="498,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""/>
+                        <Label Content="Temperatur" HorizontalAlignment="Left" Margin="400,109,0,0" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="minBox" HorizontalAlignment="Left" Margin="580,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""/>
+                        <TextBlock x:Name="maxBox" HorizontalAlignment="Left" Margin="663,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text=""/>
+                        <Label Content="Gnsnt" HorizontalAlignment="Left" Margin="498,90,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Min" HorizontalAlignment="Left" Margin="586,90,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Max" HorizontalAlignment="Left" Margin="663,90,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Vind" HorizontalAlignment="Left" Margin="409,140,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Hastighed" HorizontalAlignment="Left" Margin="435,171,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Retning" HorizontalAlignment="Left" Margin="435,202,0,0" VerticalAlignment="Top"/>
+                        <TextBlock x:Name="hastigBox" HorizontalAlignment="Left" Margin="504,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Height="21"/>
+                        <TextBlock x:Name="unitBox" HorizontalAlignment="Left" Margin="580,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
+                        <TextBlock x:Name="retningBox" HorizontalAlignment="Left" Margin="498,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35"/>
+                        <TextBlock x:Name="whereBox" HorizontalAlignment="Left" Margin="580,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
+                        <Button Content="Hent" HorizontalAlignment="Left" Margin="700,63,0,0" VerticalAlignment="Top" Click="comboBy_SelectionChanged"/>
+                        <DataGrid x:Name="progBox" Margin="10,72,495,52">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn
+                    Header="Dag"
+                    Binding="{Binding Day}"/>
+                                <DataGridTextColumn
+                    Header="Måned"
+                    Binding="{Binding Mouth}"/>
+                                <DataGridTextColumn
+                    Header="Kl"
+                    Binding="{Binding Clock}"/>
+                                <DataGridTextColumn
+                    Header="Temp"
+                    Binding="{Binding Temperature}"/>
+                                <DataGridTextColumn
+                    Header="Min"
+                    Binding="{Binding Min}"/>
+                                <DataGridTextColumn
+                    Header="Max"
+                    Binding="{Binding Max}"/>
+                                <DataGridTextColumn
+                    Header="Udsigt"
+                    Binding="{Binding View}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Label Content="5-døgns prognose" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="126"/>
+
+
+
+                    </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

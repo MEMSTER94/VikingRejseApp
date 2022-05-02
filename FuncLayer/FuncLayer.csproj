@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataLayer_Classes\DataLayer_Classes.csproj" />
+    <ProjectReference Include="..\Rejse_Classes\Rejse_Classes.csproj" />
+  </ItemGroup>
+
+</Project>
